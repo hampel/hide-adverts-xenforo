@@ -7,3 +7,8 @@ namespace Hampel\HideAdverts\XF\Entity
 {
 	class XFCP_UserOption extends \XF\Entity\UserOption {}
 }
+
+namespace Hampel\HideAdverts\XF\Pub\Controller
+{
+	class XFCP_Account extends \XF\Pub\Controller\Account {}
+}
