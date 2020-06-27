@@ -8,9 +8,14 @@ class Account extends XFCP_Account
 
 		$input = $this->filter([
 			'option' => [
-				'show_adverts' => 'bool',
+				'hide_adverts' => 'bool',
 			],
 		]);
+
+		if (!isset($input['option']['hide_adverts']))
+		{
+			$input['option']['hide_adverts'] = false;
+		}
 
 		$userOptions = $visitor->getRelationOrDefault('Option');
 		$form->setupEntityInput($userOptions, $input['option']);

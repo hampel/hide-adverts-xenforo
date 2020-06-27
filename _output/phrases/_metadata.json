@@ -1,14 +1,14 @@
 {
+    "hampel_hideadverts_hide_adverts.txt": {
+        "global_cache": false,
+        "version_id": 1000031,
+        "version_string": "1.0.0 Beta 1",
+        "hash": "fe919adbb154a6ec50cf8993090c123f"
+    },
     "hampel_hideadverts_options.txt": {
         "global_cache": false,
         "version_id": 1000031,
         "version_string": "1.0.0 Beta 1",
         "hash": "644a7de7e09f568d42522ca7793acb4d"
-    },
-    "hampel_hideadverts_show_adverts.txt": {
-        "global_cache": false,
-        "version_id": 1000031,
-        "version_string": "1.0.0 Beta 1",
-        "hash": "50a40eee58920dd61956b8deb44929c1"
     }
 }

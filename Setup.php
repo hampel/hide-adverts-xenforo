@@ -8,8 +8,8 @@ class Setup extends AbstractSetup
 	{
 		$this->schemaManager()->alterTable('xf_user_option', function(Alter $table)
 		{
-			$table->addColumn('show_adverts', 'tinyint', 3)
-			      ->setDefault(0)
+			$table->addColumn('hide_adverts', 'tinyint', 3)
+			      ->setDefault(1)
 				  ->comment('Addon Hide Adverts');
 		});
 	}
@@ -23,7 +23,7 @@ class Setup extends AbstractSetup
 	{
 		$this->schemaManager()->alterTable('xf_user_option', function(Alter $table)
 		{
-			$table->dropColumns('show_adverts');
+			$table->dropColumns('hide_adverts');
 		});
 	}
 

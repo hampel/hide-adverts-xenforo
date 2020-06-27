@@ -8,7 +8,7 @@ class UserOption extends XFCP_UserOption
 	{
 		$structure = parent::getStructure($structure);
 
-		$structure->columns['show_adverts'] = ['type' => self::BOOL, 'default' => false];
+		$structure->columns['hide_adverts'] = ['type' => self::BOOL, 'default' => true];
 
 		return $structure;
 	}
