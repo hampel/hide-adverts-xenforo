@@ -5,6 +5,7 @@
 
 namespace Hampel\HideAdverts\XF\Entity
 {
+	class XFCP_User extends \XF\Entity\User {}
 	class XFCP_UserOption extends \XF\Entity\UserOption {}
 }
 
