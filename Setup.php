@@ -1,5 +1,7 @@
 <?php namespace Hampel\HideAdverts;
 
+use XF\Db\Schema\Alter;
+use XF\Db\Schema\Create;
 use XF\AddOn\AbstractSetup;
 
 class Setup extends AbstractSetup
