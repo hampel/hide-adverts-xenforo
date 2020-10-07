@@ -1,5 +1,8 @@
 {
     "hampelHideAdvertsDisabledNodes.json": {
         "hash": "d7a82b99e84b6d9b0c93006d661406f2"
+    },
+    "hampelHideAdvertsDisabledUsergroups.json": {
+        "hash": "ce9e7e565e0a7846e49d133515cbe783"
     }
 }

@@ -23,11 +23,23 @@
         "version_string": "1.0.0 Beta 2",
         "hash": "bf5d20defe9f157208a3399dcbdc15ce"
     },
+    "option.hampelHideAdvertsDisabledUsergroups.txt": {
+        "global_cache": false,
+        "version_id": 1000032,
+        "version_string": "1.0.0 Beta 2",
+        "hash": "1a8d3fca663cfb86e3ab590edac772cf"
+    },
     "option_explain.hampelHideAdvertsDisabledNodes.txt": {
         "global_cache": false,
         "version_id": 1000032,
         "version_string": "1.0.0 Beta 2",
         "hash": "a9d302148fd68aa49b20e5e129784655"
+    },
+    "option_explain.hampelHideAdvertsDisabledUsergroups.txt": {
+        "global_cache": false,
+        "version_id": 1000032,
+        "version_string": "1.0.0 Beta 2",
+        "hash": "d472b73916363bf71add2af131c55319"
     },
     "option_group.hampelHideAdverts.txt": {
         "global_cache": false,

@@ -1,11 +1,24 @@
 <?php namespace Hampel\HideAdverts\XF\Template;
 
 use Hampel\HideAdverts\Option\DisabledNodes;
+use Hampel\HideAdverts\Option\DisabledUsergroups;
+use XF\Entity\User;
 
 class Templater extends XFCP_Templater
 {
 	public function callAdsMacro($position, array $arguments, array $globalVars)
 	{
+		$disabledUserGroups = DisabledUsergroups::get();
+		if (!empty($disabledUserGroups))
+		{
+			/** @var User $visitor */
+			$visitor = $globalVars['xf']['visitor'];
+			if ($visitor->isMemberOf($disabledUserGroups))
+			{
+				return '';
+			}
+		}
+
 		$containerKey = $globalVars['xf']['reply']['containerKey'];
 		if ($containerKey)
 		{

@@ -1,0 +1,1 @@
+Comma separated list of user group ids for whom all adverts will be disabled. <strong>Note:</strong> if you want to allow users to retain the ability to turn on adverts, do <em>not</em> use this option, but instead configure the "Can hide adverts" permission.
