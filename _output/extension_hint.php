@@ -13,3 +13,8 @@ namespace Hampel\HideAdverts\XF\Pub\Controller
 {
 	class XFCP_Account extends \XF\Pub\Controller\Account {}
 }
+
+namespace Hampel\HideAdverts\XF\Template
+{
+	class XFCP_Templater extends \XF\Template\Templater {}
+}

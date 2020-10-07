@@ -17,6 +17,30 @@
         "version_string": "1.0.0 Beta 1",
         "hash": "644a7de7e09f568d42522ca7793acb4d"
     },
+    "option.hampelHideAdvertsDisabledNodes.txt": {
+        "global_cache": false,
+        "version_id": 1000032,
+        "version_string": "1.0.0 Beta 2",
+        "hash": "bf5d20defe9f157208a3399dcbdc15ce"
+    },
+    "option_explain.hampelHideAdvertsDisabledNodes.txt": {
+        "global_cache": false,
+        "version_id": 1000032,
+        "version_string": "1.0.0 Beta 2",
+        "hash": "a9d302148fd68aa49b20e5e129784655"
+    },
+    "option_group.hampelHideAdverts.txt": {
+        "global_cache": false,
+        "version_id": 1000032,
+        "version_string": "1.0.0 Beta 2",
+        "hash": "eb72d0cde572755f92910fdb02de68b1"
+    },
+    "option_group_description.hampelHideAdverts.txt": {
+        "global_cache": false,
+        "version_id": 1000032,
+        "version_string": "1.0.0 Beta 2",
+        "hash": "ffddbb131f4be4517ce24693d9af6874"
+    },
     "permission.general_hampelHideAdverts.txt": {
         "global_cache": false,
         "version_id": 1000031,

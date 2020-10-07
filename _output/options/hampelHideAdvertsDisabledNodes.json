@@ -1,0 +1,13 @@
+{
+    "edit_format": "textbox",
+    "edit_format_params": "",
+    "data_type": "string",
+    "sub_options": [],
+    "validation_class": "Hampel\\HideAdverts\\Option\\DisabledNodes",
+    "validation_method": "verifyOption",
+    "advanced": false,
+    "default_value": "",
+    "relations": {
+        "hampelHideAdverts": 1
+    }
+}
