@@ -9,4 +9,4 @@ By [Simon Hampel](https://twitter.com/SimonHampel).
 Requirements
 ------------
 
-This addon has been tested on XenForo 2.1
+This addon has been tested on XenForo v2.1 and v2.2 
