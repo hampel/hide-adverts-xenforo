@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.1.2 (2024-07-12)
+------------------
+
+* disable the option to hide adverts if the user doesn't have permission to do so
+
 1.1.1 (2024-07-11)
 ------------------
 
