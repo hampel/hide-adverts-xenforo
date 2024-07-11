@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.1.1 (2024-07-11)
+------------------
+
+* fix template modification to work with XF2.3 as well
+
 1.1.0 (2020-10-07)
 ------------------
 
