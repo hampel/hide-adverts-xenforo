@@ -6,7 +6,7 @@ to show adverts even if they have permission to hide them
 
 Additional options allow you to hide adverts for specific nodes and for specific usergroups (overrides permissions).
 
-By [Simon Hampel](https://twitter.com/SimonHampel).
+By [Simon Hampel](https://xenforo.com/community/members/sim.4264/).
 
 Requirements
 ------------
