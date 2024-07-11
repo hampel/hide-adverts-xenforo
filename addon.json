@@ -7,11 +7,16 @@
     "dev": "Simon Hampel",
     "dev_url": "https://xenforo.com/community/members/sim.4264/",
     "faq_url": "",
-    "support_url": "https://bitbucket.org/hampel/hide-adverts-xenforo/issues",
+    "support_url": "https://xenforo.com/community/threads/hide-adverts.182320/",
     "extra_urls": {
-        "Git Repository": "https://bitbucket.org/hampel/hide-adverts-xenforo",
-        "Twitter": "https://twitter.com/SimonHampel"
+        "Addon": "https://xenforo.com/community/resources/hide-adverts.7878/",
+        "Git Repository": "https://github.com/hampel/hide-adverts-xenforo"
     },
-    "require": [],
+    "require": {
+        "XF": [
+            "2010070",
+            "XenForo 2.1.0+"
+        ]
+    },
     "icon": "fa-ad"
 }
