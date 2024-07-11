@@ -5,5 +5,5 @@
     "enabled": true,
     "action": "preg_replace",
     "find": "#(<xf:macro (id=\"helper_account::activity_privacy_row\"|template=\"helper_account\" name=\"activity_privacy_row\")[^/]*/>)#simU",
-    "replace": "\n\t\t\t<xf:checkboxrow label=\"{{ phrase('hampel_hideadverts_options') }}\">\n\t\t\t\t<xf:option name=\"option[hide_adverts]\" checked=\"{$xf.visitor.Option.hide_adverts}\"\n\t\t\t\t\tlabel=\"{{ phrase('hampel_hideadverts_hide_adverts') }}\" \n\t\t\t\t\thint=\"{{ phrase('hampel_hideadverts_hide_adverts_hint') }}\" />\n\t\t\t</xf:checkboxrow>\n\n\t\t\t$0"
+    "replace": "\t\t\t<xf:checkboxrow label=\"{{ phrase('hampel_hideadverts_options') }}\">\n\t\t\t\t<xf:option name=\"option[hide_adverts]\" checked=\"{$xf.visitor.Option.hide_adverts}\"\n\t\t\t\t\tlabel=\"{{ phrase('hampel_hideadverts_hide_adverts') }}\" \n\t\t\t\t\thint=\"{{ phrase('hampel_hideadverts_hide_adverts_hint') }}\" \n\t\t\t\t\tdisabled=\"{{ $xf.visitor.hasPermission('general', 'hampelHideAdverts') ? '' : 'disabled' }}\"/>\n\t\t\t</xf:checkboxrow>\n\n\t\t\t$0"
 }
