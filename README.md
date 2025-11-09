@@ -8,7 +8,5 @@ Additional options allow you to hide adverts for specific nodes and for specific
 
 By [Simon Hampel](https://xenforo.com/community/members/sim.4264/).
 
-Requirements
-------------
-
-This addon has been tested on XenForo v2.2 and v2.3 
+* [Addon: Hide Adverts](https://xenforo.com/community/resources/hide-adverts.7878/)
+* [Discussion and support: Hide Adverts](https://xenforo.com/community/threads/hide-adverts.182320/)
