@@ -21,6 +21,13 @@ class Setup extends AbstractSetup
 		// TODO: Implement upgrade() method.
 	}
 
+    public function postUpgrade($previousVersion, array &$stateChanges)
+    {
+        if (\XF::$versionId >= 2030000) { // XF 2.3+
+            $this->enqueuePostUpgradeCleanUp();
+        }
+    }
+
 	public function uninstall(array $stepParams = [])
 	{
 		$this->schemaManager()->alterTable('xf_user_option', function(Alter $table)
