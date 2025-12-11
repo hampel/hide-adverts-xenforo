@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.1.3 (2025-12-11)
+------------------
+
+* run enqueuePostUpgradeCleanUp during upgrades if we're running XF2.3+
+
 1.1.2 (2024-07-12)
 ------------------
 
