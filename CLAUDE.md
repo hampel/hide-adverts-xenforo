@@ -44,7 +44,7 @@ removes the checkbox on that XF branch with no error.
 checkbox is rendered `disabled` for everyone else, so browsers never submit it; reading the input
 regardless would turn the missing value into `false` and reset the preference on every save.
 
-**The column was called `hide_adverts` before 1.1.4** and was renamed because columns on core
+**The column was called `hide_adverts` before 1.2.0** and was renamed because columns on core
 tables must carry an add-on identifier. `Setup::upgrade1010412Step1()` does the rename, and only
 when the old name exists and the new one does not, so it is safe to re-run; `uninstall()` drops
 whichever name it finds. The names live in `Setup::COLUMN` and `Setup::LEGACY_COLUMN`. A schema

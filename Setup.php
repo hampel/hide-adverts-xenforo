@@ -10,7 +10,7 @@ class Setup extends AbstractSetup
 
 	/**
 	 * The preference column on xf_user_option. Columns added to core tables must carry an add-on
-	 * identifier; versions before 1.1.4 used the unprefixed name below.
+	 * identifier; versions before 1.2.0 used the unprefixed name below.
 	 */
 	const COLUMN = 'hampel_hideadverts_hide_adverts';
 	const LEGACY_COLUMN = 'hide_adverts';
@@ -25,7 +25,7 @@ class Setup extends AbstractSetup
 		});
 	}
 
-	// upgrade to 1.1.4 - rename the column, keeping every member's value
+	// upgrade to 1.2.0 - rename the column, keeping every member's value
 	public function upgrade1010412Step1(array $stepParams = [])
 	{
 		$sm = $this->schemaManager();
@@ -52,7 +52,7 @@ class Setup extends AbstractSetup
 	{
 		$sm = $this->schemaManager();
 
-		// either name, in case an upgrade to 1.1.4 never completed
+		// either name, in case an upgrade to 1.2.0 never completed
 		foreach ([self::COLUMN, self::LEGACY_COLUMN] as $column)
 		{
 			if ($sm->columnExists('xf_user_option', $column))
