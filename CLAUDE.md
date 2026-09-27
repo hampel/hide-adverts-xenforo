@@ -23,9 +23,8 @@ code with that in mind saves chasing a check that does not exist.
   `<xf:if is="$xf.visitor.show_adverts">`**, so renaming or removing it breaks every forum that
   followed the add-on's instructions, silently.
 
-`canHideAdverts()` and `getShowAdverts()` read `\XF::visitor()`, not `$this`. Called on any other
-`User` entity they answer for the current visitor — harmless for the template use above, wrong if
-anything ever calls them on another user.
+`canHideAdverts()` and `getShowAdverts()` answer for the entity they are called on, like core's
+`can*()` methods, so `$user->show_adverts` is correct for any user, not only the visitor.
 
 ## The preference column defaults to "hide"
 
@@ -38,8 +37,11 @@ The checkbox on the account preferences page comes from the template modificatio
 `hampelHideAdvertsAccountPreferences`, a `preg_replace` whose pattern matches **both** the XF 2.2
 (`id="helper_account::activity_privacy_row"`) and XF 2.3 (`template="helper_account"
 name="activity_privacy_row"`) macro syntax. Keep both alternatives when editing it; losing one
-removes the checkbox on that XF branch with no error. `XF/Pub/Controller/Account.php` saves it,
-treating an absent checkbox as `false`.
+removes the checkbox on that XF branch with no error.
+
+**`XF/Pub/Controller/Account.php` saves the preference only when `canHideAdverts()` is true.** The
+checkbox is rendered `disabled` for everyone else, so browsers never submit it; reading the input
+regardless would turn the missing value into `false` and reset the preference on every save.
 
 `Setup::upgrade()` is an empty stub. A schema change needs real upgrade steps, not an edit to
 `install()`.
