@@ -19,9 +19,10 @@ code with that in mind saves chasing a check that does not exist.
   controller sets one.
 - **Permission plus preference** — the `general.hampelHideAdverts` permission and the
   `xf_user_option.hide_adverts` column combine in the `show_adverts` getter on `XF\Entity\User`.
-  Nothing in the add-on reads that getter. **Admins are expected to wrap their own advert HTML in
+  Nothing in the add-on reads that getter. **The README and the xenforo.com resource page tell
+  admins to wrap their own advert HTML, and widget display conditions, in
   `<xf:if is="$xf.visitor.show_adverts">`**, so renaming or removing it breaks every forum that
-  followed the add-on's instructions, silently.
+  followed those instructions, silently.
 
 `canHideAdverts()` and `getShowAdverts()` answer for the entity they are called on, like core's
 `can*()` methods, so `$user->show_adverts` is correct for any user, not only the visitor.
