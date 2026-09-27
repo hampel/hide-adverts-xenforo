@@ -18,9 +18,9 @@ code with that in mind saves chasing a check that does not exist.
   The node check parses the reply's `containerKey` (`node-<id>`), so it only fires on pages whose
   controller sets one.
 - **Permission plus preference** — the `general.hampelHideAdverts` permission and the
-  `xf_user_option.hide_adverts` column combine in the `show_adverts` getter on `XF\Entity\User`.
-  Nothing in the add-on reads that getter. **The README and the xenforo.com resource page tell
-  admins to wrap their own advert HTML, and widget display conditions, in
+  `xf_user_option.hampel_hideadverts_hide_adverts` column combine in the `show_adverts` getter on
+  `XF\Entity\User`. Nothing in the add-on reads that getter. **The README and the xenforo.com
+  resource page tell admins to wrap their own advert HTML, and widget display conditions, in
   `<xf:if is="$xf.visitor.show_adverts">`**, so renaming or removing it breaks every forum that
   followed those instructions, silently.
 
@@ -29,10 +29,10 @@ code with that in mind saves chasing a check that does not exist.
 
 ## The preference column defaults to "hide"
 
-`Setup::install()` adds `hide_adverts` as `tinyint` defaulting to `1`, and the `UserOption` entity
-mirrors that with `'default' => true`. So a member who is *granted* the permission stops seeing
-adverts immediately, without touching their preferences. Changing either default without the other
-makes new and existing users behave differently.
+`Setup::install()` adds `hampel_hideadverts_hide_adverts` as `tinyint` defaulting to `1`, and the
+`UserOption` entity mirrors that with `'default' => true`. So a member who is *granted* the
+permission stops seeing adverts immediately, without touching their preferences. Changing either
+default without the other makes new and existing users behave differently.
 
 The checkbox on the account preferences page comes from the template modification
 `hampelHideAdvertsAccountPreferences`, a `preg_replace` whose pattern matches **both** the XF 2.2
@@ -44,8 +44,12 @@ removes the checkbox on that XF branch with no error.
 checkbox is rendered `disabled` for everyone else, so browsers never submit it; reading the input
 regardless would turn the missing value into `false` and reset the preference on every save.
 
-`Setup::upgrade()` is an empty stub. A schema change needs real upgrade steps, not an edit to
-`install()`.
+**The column was called `hide_adverts` before 1.1.4** and was renamed because columns on core
+tables must carry an add-on identifier. `Setup::upgrade1010412Step1()` does the rename, and only
+when the old name exists and the new one does not, so it is safe to re-run; `uninstall()` drops
+whichever name it finds. The names live in `Setup::COLUMN` and `Setup::LEGACY_COLUMN`. A schema
+change needs a new `upgrade<versionId>Step<n>()`, not an edit to `install()` — and schema changes
+are not transactional, so the suite cannot cover one; prove it with an upgrade from a release zip.
 
 ## Commands
 

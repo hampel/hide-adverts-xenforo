@@ -5,7 +5,7 @@
 | surface | what it does |
 |---|---|
 | `XF\Entity\User` | `canHideAdverts()` and the `show_adverts` getter — the public interface admins use in advert HTML |
-| `XF\Entity\UserOption` | the `hide_adverts` column |
+| `XF\Entity\UserOption` | the `hampel_hideadverts_hide_adverts` column (named `hide_adverts` before 1.1.4) |
 | `XF\Pub\Controller\Account` | saves the preference, only for members with the permission |
 | `XF\Template\Templater` | `callAdsMacro()` — suppresses advert positions for listed nodes and user groups |
 | template modification `hampelHideAdvertsAccountPreferences` | the checkbox on `account/preferences` |
@@ -17,6 +17,8 @@
   `activity_privacy_row`. If core changes that line again, the checkbox disappears with no error.
 - **The node check reads `containerKey`**, so it only suppresses adverts on pages whose controller
   sets `node-<id>` — forum and thread views.
+- **The 1.1.4 upgrade renames a column on `xf_user_option`.** On older MySQL and MariaDB that
+  rebuilds the table, so a large forum sees it locked for the duration of the upgrade.
 - **Only positions rendered through `callAdsMacro()` are affected.** Advert HTML an admin puts
   elsewhere is controlled by their own `$xf.visitor.show_adverts` condition.
 

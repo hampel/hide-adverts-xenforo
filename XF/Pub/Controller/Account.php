@@ -12,7 +12,7 @@ class Account extends XFCP_Account
 		{
 			$input = $this->filter([
 				'option' => [
-					'hide_adverts' => 'bool',
+					'hampel_hideadverts_hide_adverts' => 'bool',
 				],
 			]);
 

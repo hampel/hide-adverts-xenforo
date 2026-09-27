@@ -20,7 +20,7 @@ class User extends XFCP_User
 		if ($this->canHideAdverts())
 		{
 			// if the user can hide their adverts, then show the adverts only if their preference is to not hide them
-			return !$this->Option->hide_adverts;
+			return !$this->Option->hampel_hideadverts_hide_adverts;
 		}
 
 		// user can't hide adverts - always show adverts

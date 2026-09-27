@@ -16,7 +16,7 @@ class ShowAdvertsTest extends TestCase
 			'user_group_id' => User::GROUP_REG,
 		]);
 		$this->setVisitorPermissions($user, $canHide ? self::CAN_HIDE : []);
-		$user->Option->hide_adverts = $prefersHidden;
+		$user->Option->hampel_hideadverts_hide_adverts = $prefersHidden;
 
 		return $user;
 	}
@@ -48,7 +48,7 @@ class ShowAdvertsTest extends TestCase
 	public function test_guest_sees_adverts_even_with_the_permission()
 	{
 		$guest = $this->actingAsGuest(self::CAN_HIDE);
-		$guest->Option->hide_adverts = true;
+		$guest->Option->hampel_hideadverts_hide_adverts = true;
 
 		$this->assertFalse($guest->canHideAdverts());
 		$this->assertTrue($guest->show_adverts);

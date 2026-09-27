@@ -25,7 +25,7 @@ class PreferencesSaveTest extends TestCase
 			$this->markTestSkipped('Needs at least one valid member in the database.');
 		}
 
-		$user->Option->hide_adverts = $prefersHidden;
+		$user->Option->hampel_hideadverts_hide_adverts = $prefersHidden;
 		$user->Option->save();
 
 		return $user;
@@ -48,7 +48,7 @@ class PreferencesSaveTest extends TestCase
 		$this->assertReplyIsRedirect($reply);
 
 		return (bool) $this->app()->db()->fetchOne(
-			'SELECT hide_adverts FROM xf_user_option WHERE user_id = ?', $user->user_id
+			'SELECT hampel_hideadverts_hide_adverts FROM xf_user_option WHERE user_id = ?', $user->user_id
 		);
 	}
 
@@ -64,7 +64,7 @@ class PreferencesSaveTest extends TestCase
 	{
 		$user = $this->actingAs($this->existingMember(true), ['general' => ['view' => true]]);
 
-		$this->assertTrue($this->savePreferences($user, ['option' => ['hide_adverts' => 0]]));
+		$this->assertTrue($this->savePreferences($user, ['option' => ['hampel_hideadverts_hide_adverts' => 0]]));
 	}
 
 	public function test_permitted_member_can_turn_hiding_off()
@@ -85,6 +85,6 @@ class PreferencesSaveTest extends TestCase
 			['general' => ['view' => true, 'hampelHideAdverts' => true]]
 		);
 
-		$this->assertTrue($this->savePreferences($user, ['option' => ['hide_adverts' => 1]]));
+		$this->assertTrue($this->savePreferences($user, ['option' => ['hampel_hideadverts_hide_adverts' => 1]]));
 	}
 }
