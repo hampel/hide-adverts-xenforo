@@ -6,19 +6,19 @@ class Account extends XFCP_Account
 	{
 		$form = parent::preferencesSaveProcess($visitor);
 
-		$input = $this->filter([
-			'option' => [
-				'hide_adverts' => 'bool',
-			],
-		]);
-
-		if (!isset($input['option']['hide_adverts']))
+		// the checkbox is disabled for users without permission, so it is never submitted - saving
+		// it anyway would silently reset their preference
+		if ($visitor->canHideAdverts())
 		{
-			$input['option']['hide_adverts'] = false;
-		}
+			$input = $this->filter([
+				'option' => [
+					'hide_adverts' => 'bool',
+				],
+			]);
 
-		$userOptions = $visitor->getRelationOrDefault('Option');
-		$form->setupEntityInput($userOptions, $input['option']);
+			$userOptions = $visitor->getRelationOrDefault('Option');
+			$form->setupEntityInput($userOptions, $input['option']);
+		}
 
 		return $form;
 	}
