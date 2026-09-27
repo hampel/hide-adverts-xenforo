@@ -19,8 +19,8 @@ class DisabledUsergroups extends AbstractOption
 		return Helper::stringListToArray(\XF::options()->hampelHideAdvertsDisabledUsergroups);
 	}
 
-	public static function inList($nodeId)
+	public static function inList($userGroupId)
 	{
-		return in_array($nodeId, self::get());
+		return in_array($userGroupId, self::get());
 	}
 }

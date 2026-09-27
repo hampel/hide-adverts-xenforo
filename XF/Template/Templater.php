@@ -12,14 +12,14 @@ class Templater extends XFCP_Templater
 		if (!empty($disabledUserGroups))
 		{
 			/** @var User $visitor */
-			$visitor = $globalVars['xf']['visitor'];
+			$visitor = \XF::visitor();
 			if ($visitor->isMemberOf($disabledUserGroups))
 			{
 				return '';
 			}
 		}
 
-		$containerKey = $globalVars['xf']['reply']['containerKey'];
+		$containerKey = $globalVars['xf']['reply']['containerKey'] ?? null;
 		if ($containerKey)
 		{
 			$key = explode('-', $containerKey);
