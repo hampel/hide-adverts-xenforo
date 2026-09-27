@@ -58,22 +58,40 @@ php cmd.php xf:addon-upgrade Hampel/HideAdverts               # after a version 
 php cmd.php xf-addon:build-release Hampel/HideAdverts         # release zip into _releases/
 ```
 
-**Never run `xf-dev:export` without thinking** — its `--addon` defaults to every add-on on the
-install. There is no test suite; `TESTING.md` is a placeholder.
+**Never run `xf-dev:export`** — its `--addon` defaults to every add-on on the install, and it
+overwrites `_output/` from the database. `xf-addon:export` above is the scoped equivalent.
 
 Options, phrases, the permission and the template modification live in `_output/` and are edited
 through the admin control panel or by hand followed by the import above. The install's `AGENTS.md`
 covers the `_output/` workflow, version bumps and releases; the `xenforo-addon-release` skill, where
 available, carries the release order.
 
+## Tests
+
+**The suite boots the XenForo install this add-on sits in**, with only this add-on loaded
+(`$addonsToLoad` in `tests/TestCase.php`). Run from the add-on directory:
+
+```bash
+composer install                         # dev only: the test framework and PHPUnit
+vendor/bin/phpunit
+vendor/bin/phpunit --filter PreferencesSaveTest
+```
+
+- **`PreferencesSaveTest` writes to the real database** through the `account/preferences` action,
+  inside a transaction rolled back after each test. It needs one valid member and skips without.
+- **`AdsOverrideTest` replaces core's `_ads` lookup and macro call** in an anonymous subclass, so an
+  advert that renders returns a marker string. Without that, a suppressed advert and a position
+  with no advert both return `''` and every assertion would pass either way.
+- The permission is granted in memory (`setVisitorPermissions()`), so no forum needs it granted.
+
 ## Packaging
 
 **Dev-only root files are kept out of two places by two separate mechanisms**, and adding a new one
 means updating both:
 
-- **The XenForo release zip** — `build.json`'s `rm -fv` line deletes `TESTING.md`, `CLAUDE.md` and
-  `CLAUDE.local.md`. It must run before the `mv` that promotes every remaining root `*.md` to the
-  zip root, or it matches nothing and the file ships.
+- **The XenForo release zip** — `build.json`'s `rm` lines delete `TESTING.md`, the two Claude
+  files, the Composer and PHPUnit files, `tests/` and `vendor/`. They must run before the `mv` that
+  promotes every remaining root `*.md` to the zip root, or they match nothing and the file ships.
 - **`git archive`** (GitHub's "Download ZIP") — `export-ignore` entries in `.gitattributes`.
 
 Machine-specific notes go in `CLAUDE.local.md`, which is gitignored. `.gitattributes` also forces LF
