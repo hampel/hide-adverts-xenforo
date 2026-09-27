@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Hide Adverts is a XenForo 2.x add-on (`Hampel/HideAdverts`, requires XF 2.1.0+) that
+Hide Adverts is a XenForo 2.x add-on (`Hampel/HideAdverts`, requires XF 2.2.0+) that
 lets permitted members opt out of adverts, and lets admins suppress adverts per node and per user
 group. The repository root is the add-on directory, `src/addons/Hampel/HideAdverts/` inside a
 XenForo install; there is no `src/` of its own and no Composer dependencies.
