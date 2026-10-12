@@ -93,12 +93,28 @@ vendor/bin/phpunit
 vendor/bin/phpunit --filter PreferencesSaveTest
 ```
 
-- **`PreferencesSaveTest` writes to the real database** through the `account/preferences` action,
-  inside a transaction rolled back after each test. It needs one valid member and skips without.
+- **`PreferencesSaveTest` writes to the real database** with a real `POST` dispatched to
+  `account/preferences`, so XenForo's own guards on the route run, inside a transaction rolled back
+  after each test. It needs one valid member and skips without, and test framework 5.15 or later,
+  which is the first that can send a `POST` with a valid CSRF token.
+- **Its permission sets are never empty arrays.** `actingAs()` with an empty array leaves the
+  member's real permissions from the database in place, so on a forum where that member can hide
+  adverts the "without permission" tests would test the opposite.
 - **`AdsOverrideTest` replaces core's `_ads` lookup and macro call** in an anonymous subclass, so an
   advert that renders returns a marker string. Without that, a suppressed advert and a position
   with no advert both return `''` and every assertion would pass either way.
 - The permission is granted in memory (`setVisitorPermissions()`), so no forum needs it granted.
+
+## No `config` or `validate` commands, deliberately
+
+**The add-on has no self-check CLI commands because it has nothing they could report.** No setting
+is opaque: two comma-separated id lists and one permission. Nothing runs unattended: it has no cron
+entries or jobs of its own. And both options already sit on one options page.
+
+The one failure a command could look for is an admin who never added the `show_adverts` condition
+to their adverts, which leaves the permission doing nothing. Checking that means guessing where
+each forum places its adverts, so the README states the requirement instead. Revisit this if the
+add-on gains a setting that is not self-explanatory, or anything that runs on a schedule.
 
 ## Packaging
 
