@@ -95,8 +95,7 @@ vendor/bin/phpunit --filter PreferencesSaveTest
 
 - **`PreferencesSaveTest` writes to the real database** with a real `POST` dispatched to
   `account/preferences`, so XenForo's own guards on the route run, inside a transaction rolled back
-  after each test. It needs one valid member and skips without, and test framework 5.15 or later,
-  which is the first that can send a `POST` with a valid CSRF token.
+  after each test. It needs one valid member and skips without.
 - **Its permission sets are never empty arrays.** `actingAs()` with an empty array leaves the
   member's real permissions from the database in place, so on a forum where that member can hide
   adverts the "without permission" tests would test the opposite.
@@ -104,11 +103,14 @@ vendor/bin/phpunit --filter PreferencesSaveTest
   advert that renders returns a marker string. Without that, a suppressed advert and a position
   with no advert both return `''` and every assertion would pass either way.
 - The permission is granted in memory (`setVisitorPermissions()`), so no forum needs it granted.
-- **`PreferencesFormTest` scopes its template-error check to `public:account_preferences`.** A
-  blanket check fails on errors that are not this add-on's: core's own render of that page under
-  test, and any other installed add-on's modification to it. It also cannot use
-  `assertNoUnresolvedPhrases()` with the phrase prefix, because the checkbox's field name is the
-  same string as one of the phrase keys; it asserts each label's text and key instead.
+- **`PreferencesFormTest` scopes its template-error check to `public:account_preferences`.** On
+  an install shared with other add-ons, a blanket check also reports errors from their
+  modifications to that page.
+- **It proves the checkbox comes from the modification** by rendering the page a second time with
+  `renderTemplateWithoutModification()` and asserting the row is gone. Nothing is written, so it
+  is safe on a shared install.
+- **Both preference tests use an existing member, not a new one.** Creating a user inside a
+  transaction deadlocks with any other suite doing the same against the same database.
 - **`SetupTest` does not run the rename step.** Schema changes are not transactional.
 
 ## No `config` or `validate` commands, deliberately

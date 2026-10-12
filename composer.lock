@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4646ca89623bad6ec89cc2650e02e0c",
+    "content-hash": "39a7ded9abe5d4d939b885ce1c84d8f4",
     "packages": [],
     "packages-dev": [
         {
@@ -64,16 +64,16 @@
         },
         {
             "name": "hampel/xenforo-test-framework",
-            "version": "5.23.1",
+            "version": "5.24.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hampel/xenforo-test-framework.git",
-                "reference": "c73429e6135424064724813ecef5a88d30f8f1f4"
+                "reference": "bf986d84cc30df8fe4e2eb846873358ce5dda65a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hampel/xenforo-test-framework/zipball/c73429e6135424064724813ecef5a88d30f8f1f4",
-                "reference": "c73429e6135424064724813ecef5a88d30f8f1f4",
+                "url": "https://api.github.com/repos/hampel/xenforo-test-framework/zipball/bf986d84cc30df8fe4e2eb846873358ce5dda65a",
+                "reference": "bf986d84cc30df8fe4e2eb846873358ce5dda65a",
                 "shasum": ""
             },
             "require": {
@@ -125,7 +125,7 @@
                 "issues": "https://github.com/hampel/xenforo-test-framework/issues",
                 "source": "https://github.com/hampel/xenforo-test-framework"
             },
-            "time": "2026-10-12T06:03:13+00:00"
+            "time": "2026-10-12T07:26:22+00:00"
         },
         {
             "name": "mockery/mockery",
