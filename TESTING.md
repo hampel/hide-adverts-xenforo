@@ -25,13 +25,26 @@
 
 ## Automated
 
-`vendor/bin/phpunit` — see `CLAUDE.md`. Covers the option helpers, `show_adverts`, the
-preference save, the ads override, and the secrets declaration against the option definitions.
+`vendor/bin/phpunit` — see `CLAUDE.md`. It covers:
+
+- the option list helpers and both option classes;
+- `show_adverts` and `canHideAdverts()`, for the visitor and for another user;
+- the preference save, as a real `POST` to `account/preferences`;
+- the preferences form: the template modification applies, the checkbox shows the member's
+  preference, it is disabled without the permission, and its three phrases resolve;
+- the ads override, for listed and unlisted nodes and user groups and for a missing reply;
+- `Setup`: the column exists under its prefixed name with the entity's default, and
+  `postUpgrade()` queues the file clean-up on XenForo 2.3;
+- the secrets declaration, checked against the option definitions and fired through the event.
+
+The suite runs against the XenForo install the add-on sits in, so it covers one XenForo version
+at a time.
 
 ## Needs a human
 
-- That the checkbox appears on `account/preferences`, is disabled without the permission, and
-  that a saved change sticks — in a browser, on both XF 2.2 and 2.3.
+- How the checkbox looks and behaves in a browser, and the whole preferences check on the other
+  supported XenForo line from the one the suite last ran on.
 - That advert positions actually disappear on a listed node and for a listed group, with real
   adverts configured.
-- The upgrade from the last published version, run from the release zip.
+- The upgrade from the last published version, run from the release zip. The column rename is
+  only proved this way: schema changes are not transactional, so the suite does not run it.
