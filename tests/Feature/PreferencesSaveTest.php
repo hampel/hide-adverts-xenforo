@@ -12,6 +12,14 @@ class PreferencesSaveTest extends TestCase
 {
 	use UsesDatabaseTransactions;
 
+	/**
+	 * The member's whole permission set for the test. Neither may be an empty array: actingAs()
+	 * then leaves the member's real permissions from the database in place, and on a forum where
+	 * that member can hide adverts the "without" tests would be testing the opposite.
+	 */
+	private const WITHOUT_PERMISSION = ['general' => ['view' => true]];
+	private const WITH_PERMISSION = ['general' => ['view' => true, 'hampelHideAdverts' => true]];
+
 	private function existingMember(bool $prefersHidden): User
 	{
 		$user = $this->app()->finder('XF:User')
@@ -44,7 +52,8 @@ class PreferencesSaveTest extends TestCase
 			],
 		];
 
-		$reply = $this->callAction('XF:Account', 'preferences', 'public', $input);
+		// a real POST through the dispatcher, so XenForo's own guards on the route run too
+		$reply = $this->dispatch('account/preferences', 'public', $input, [], 'POST');
 		$this->assertReplyIsRedirect($reply);
 
 		return (bool) $this->app()->db()->fetchOne(
@@ -54,7 +63,7 @@ class PreferencesSaveTest extends TestCase
 
 	public function test_member_without_permission_keeps_their_preference()
 	{
-		$user = $this->actingAs($this->existingMember(true), ['general' => ['view' => true]]);
+		$user = $this->actingAs($this->existingMember(true), self::WITHOUT_PERMISSION);
 
 		// the disabled checkbox is never submitted
 		$this->assertTrue($this->savePreferences($user, []));
@@ -62,17 +71,14 @@ class PreferencesSaveTest extends TestCase
 
 	public function test_member_without_permission_cannot_change_it_by_submitting_the_field()
 	{
-		$user = $this->actingAs($this->existingMember(true), ['general' => ['view' => true]]);
+		$user = $this->actingAs($this->existingMember(true), self::WITHOUT_PERMISSION);
 
 		$this->assertTrue($this->savePreferences($user, ['option' => ['hampel_hideadverts_hide_adverts' => 0]]));
 	}
 
 	public function test_permitted_member_can_turn_hiding_off()
 	{
-		$user = $this->actingAs(
-			$this->existingMember(true),
-			['general' => ['view' => true, 'hampelHideAdverts' => true]]
-		);
+		$user = $this->actingAs($this->existingMember(true), self::WITH_PERMISSION);
 
 		// an unticked checkbox is not submitted either
 		$this->assertFalse($this->savePreferences($user, []));
@@ -80,10 +86,7 @@ class PreferencesSaveTest extends TestCase
 
 	public function test_permitted_member_can_turn_hiding_on()
 	{
-		$user = $this->actingAs(
-			$this->existingMember(false),
-			['general' => ['view' => true, 'hampelHideAdverts' => true]]
-		);
+		$user = $this->actingAs($this->existingMember(false), self::WITH_PERMISSION);
 
 		$this->assertTrue($this->savePreferences($user, ['option' => ['hampel_hideadverts_hide_adverts' => 1]]));
 	}
