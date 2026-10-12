@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1 (2026-10-12)
+
+- Answers the `hampel_admin_api_redaction` code event, declaring that the add-on has no secret
+  settings. Add-ons that report a forum's configuration use this to decide which option values
+  they may show. It has no effect on a forum where no add-on defines that event.
+
 ## 1.2.0 (2026-09-27)
 
 - Requires XenForo 2.2.0 or later.
