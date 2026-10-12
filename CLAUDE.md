@@ -51,6 +51,17 @@ whichever name it finds. The names live in `Setup::COLUMN` and `Setup::LEGACY_CO
 change needs a new `upgrade<versionId>Step<n>()`, not an edit to `install()` — and schema changes
 are not transactional, so the suite cannot cover one; prove it with an upgrade from a release zip.
 
+## Declaring secrets
+
+**`Listener::adminApiRedaction()` answers the `hampel_admin_api_redaction` code event with an empty
+entry, because the add-on has no secret settings.** Add-ons that report a forum's configuration
+use the answer to decide which values they may show. It is not a dependency: an event no installed
+add-on defines is never fired.
+
+**Adding or renaming an option or a `config.php` key means revisiting that method in the same
+commit.** `tests/Unit/SecretsDeclarationTest.php` fails when an option that reads like a credential
+is neither declared nor listed in its `NOT_SECRETS`.
+
 ## Commands
 
 Run from the XenForo install root; `cmd.php` resolves the install from its own location, so an

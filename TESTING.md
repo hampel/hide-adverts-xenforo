@@ -10,6 +10,7 @@
 | `XF\Template\Templater` | `callAdsMacro()` — suppresses advert positions for listed nodes and user groups |
 | template modification `hampelHideAdvertsAccountPreferences` | the checkbox on `account/preferences` |
 | permission `general.hampelHideAdverts`, options `hampelHideAdvertsDisabledNodes` / `…Usergroups` | |
+| code event listener `hampel_admin_api_redaction` | declares that the add-on has no secret settings; unused unless an add-on defining that event is installed |
 
 ## Fragile points
 
@@ -25,7 +26,7 @@
 ## Automated
 
 `vendor/bin/phpunit` — see `CLAUDE.md`. Covers the option helpers, `show_adverts`, the
-preference save and the ads override.
+preference save, the ads override, and the secrets declaration against the option definitions.
 
 ## Needs a human
 
